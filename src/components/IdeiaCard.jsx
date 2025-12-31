@@ -6,7 +6,7 @@ export function IdeiaCard({ titulo, status, descricao, tags, votos, comentarios 
                     : 'bg-blue-100 text-blue-800';
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 w-[350px] flex flex-col font-sans">
+    <div className="bg-white p-4 lg:p-6 rounded-lg shadow-md border border-gray-200 w-full flex flex-col font-sans h-full">
       <div className="flex justify-between items-start mb-4">
         <h3 className="font-bold text-lg text-gray-800 leading-tight">{titulo}</h3>
         <span className={`${statusColor} text-xs font-bold px-2.5 py-0.5 rounded-full uppercase`}>

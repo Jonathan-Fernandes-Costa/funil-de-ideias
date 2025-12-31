@@ -610,58 +610,52 @@ export function DetalhesIdeia() {
                     : 'bg-blue-100 text-blue-800';
 
   return (
-    <div className="p-8">
+    <div>
       {/* Botão Voltar */}
       <Link to="/ideias" className="text-sm text-gray-500 hover:text-blue-600 mb-4 inline-block">
         ← Voltar para o Mural
       </Link>
 
       {/* Cabeçalho DINÂMICO */}
-      <div className="mb-8 border-b border-gray-200 pb-6">
-        <div className="flex justify-between items-start">
+      <div className="mb-6 lg:mb-8 border-b border-gray-200 pb-4 lg:pb-6">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4">
           <div>
-            <div className="flex items-center gap-3 mb-2">
-               {/* Título Real */}
-               <h1 className="text-3xl font-bold text-gray-800">{ideia.titulo}</h1>
-               
-               {/* Status Real */}
-               <span className={`${statusColor} font-bold px-3 py-0.5 rounded-full uppercase text-xs tracking-wide`}>
+            <div className="flex flex-wrap items-center gap-2 lg:gap-3 mb-2">
+               <h1 className="text-xl lg:text-3xl font-bold text-gray-800">{ideia.titulo}</h1>
+               <span className={`${statusColor} font-bold px-2 lg:px-3 py-0.5 rounded-full uppercase text-xs tracking-wide`}>
                 {ideia.status}
               </span>
             </div>
-            <p className="text-gray-500 text-sm">ID #{ideia.id} • Fonte: {ideia.fonte || 'Não informada'}</p>
+            <p className="text-gray-500 text-xs lg:text-sm">ID #{ideia.id} • Fonte: {ideia.fonte || 'Não informada'}</p>
           </div>
           
           {/* Ações do cabeçalho */}
-          <div className="flex gap-2">
-            {/* Botão Assumir Ownership */}
+          <div className="flex flex-wrap gap-2">
             {podeAssumirOwnership && (
               <button
                 onClick={handleAssumirOwnership}
                 disabled={assumindoOwnership}
-                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-sm font-medium disabled:opacity-50"
+                className="px-3 lg:px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition text-xs lg:text-sm font-medium disabled:opacity-50"
               >
-                {assumindoOwnership ? 'Assumindo...' : '🙋 Assumir Responsabilidade'}
+                {assumindoOwnership ? 'Assumindo...' : '🙋 Assumir'}
               </button>
             )}
             
-            {/* Indicador de Owner */}
             {ideia.owner_id && (
-              <span className="px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium">
-                {isOwner ? '✓ Você é o responsável' : '👤 Responsável atribuído'}
+              <span className="px-2 lg:px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-xs lg:text-sm font-medium">
+                {isOwner ? '✓ Responsável' : '👤 Atribuído'}
               </span>
             )}
             
-            {/* Botões de Mudança de Status */}
             {(isOwner || isAutor) && proximosStatus.length > 0 && (
               proximosStatus.map((status) => (
                 <button
                   key={status}
                   onClick={() => handleMudarStatus(status)}
                   disabled={mudandoStatus}
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-sm font-medium disabled:opacity-50"
+                  className="px-3 lg:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-xs lg:text-sm font-medium disabled:opacity-50"
                 >
-                  {mudandoStatus ? 'Atualizando...' : `→ ${status}`}
+                  {mudandoStatus ? '...' : `→ ${status}`}
                 </button>
               ))
             )}
@@ -670,16 +664,16 @@ export function DetalhesIdeia() {
       </div>
 
       {/* Navegação em Abas */}
-      <div className="mb-6">
-        <nav className="flex gap-8 border-b border-gray-200">
-          <button onClick={() => setActiveTab('resumo')} className={`pb-3 text-sm font-medium border-b-2 ${activeTab === 'resumo' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'}`}>Resumo</button>
-          <button onClick={() => setActiveTab('definicao')} className={`pb-3 text-sm font-medium border-b-2 ${activeTab === 'definicao' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'}`}>Definição do Produto</button>
-          <button onClick={() => setActiveTab('anexos')} className={`pb-3 text-sm font-medium border-b-2 ${activeTab === 'anexos' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'}`}>Anexos</button>
+      <div className="mb-4 lg:mb-6 overflow-x-auto">
+        <nav className="flex gap-4 lg:gap-8 border-b border-gray-200 min-w-max">
+          <button onClick={() => setActiveTab('resumo')} className={`pb-3 text-xs lg:text-sm font-medium border-b-2 whitespace-nowrap ${activeTab === 'resumo' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'}`}>Resumo</button>
+          <button onClick={() => setActiveTab('definicao')} className={`pb-3 text-xs lg:text-sm font-medium border-b-2 whitespace-nowrap ${activeTab === 'definicao' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'}`}>Definição</button>
+          <button onClick={() => setActiveTab('anexos')} className={`pb-3 text-xs lg:text-sm font-medium border-b-2 whitespace-nowrap ${activeTab === 'anexos' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'}`}>Anexos</button>
         </nav>
       </div>
 
       {/* Conteúdo das Abas */}
-      <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200 min-h-[400px]">
+      <div className="bg-white p-4 lg:p-8 rounded-xl shadow-sm border border-gray-200 min-h-[300px] lg:min-h-[400px]">
         
         {activeTab === 'resumo' && (
           <div className="animate-fade-in">

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Sidebar } from './components/Sidebar'; 
+import { Sidebar, SidebarProvider, MobileMenuButton } from './components/Sidebar'; 
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import { IdeiasProvider } from './context/IdeiasContext';
@@ -16,11 +16,22 @@ function AppLayout({ children }) {
   return (
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar />
-      <main className="flex-1 ml-64 p-8 transition-all duration-300">
-        <div className="max-w-6xl mx-auto">
-          {children}
-        </div>
-      </main>
+      
+      {/* Container principal */}
+      <div className="flex-1 lg:ml-64 transition-all duration-300">
+        {/* Header mobile */}
+        <header className="lg:hidden bg-white border-b border-gray-200 px-4 py-3 flex items-center gap-4 sticky top-0 z-30">
+          <MobileMenuButton />
+          <h1 className="text-lg font-bold text-gray-800">Funil de Ideias</h1>
+        </header>
+        
+        {/* Conteúdo */}
+        <main className="p-4 lg:p-8">
+          <div className="max-w-6xl mx-auto">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }
@@ -29,6 +40,7 @@ function App() {
   return (
     <BrowserRouter>
       <ToastProvider>
+      <SidebarProvider>
       <AuthProvider>
         <IdeiasProvider>
           <Routes>
@@ -64,6 +76,7 @@ function App() {
           </Routes>
         </IdeiasProvider>
       </AuthProvider>
+      </SidebarProvider>
       </ToastProvider>
     </BrowserRouter>
   )

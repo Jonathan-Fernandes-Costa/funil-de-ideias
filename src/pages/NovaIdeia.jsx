@@ -48,8 +48,8 @@ export function NovaIdeia() {
   };
 
   return (
-    <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">
+    <div className="max-w-3xl mx-auto">
+      <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-6 lg:mb-8">
         Nova Ideia ✨
       </h1>
 
@@ -59,7 +59,7 @@ export function NovaIdeia() {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md border border-gray-200 space-y-6">
+      <form onSubmit={handleSubmit} className="bg-white p-4 lg:p-8 rounded-lg shadow-md border border-gray-200 space-y-4 lg:space-y-6">
         
         {/* Nome */}
         <div>

@@ -63,12 +63,12 @@ export function Avaliacao() {
   }
 
   return (
-    <div className="p-8">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">
+    <div>
+      <div className="mb-6 lg:mb-8">
+        <h1 className="text-2xl lg:text-3xl font-bold text-gray-800">
           Fila de Avaliação ⚖️
         </h1>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 text-sm lg:text-base mt-2">
           {ideiasParaAvaliar.length > 0 
             ? `${ideiasParaAvaliar.length} ideia(s) aguardando análise técnica.`
             : 'Nenhuma ideia pendente de avaliação.'}

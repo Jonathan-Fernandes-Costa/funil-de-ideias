@@ -115,27 +115,27 @@ export function Ideias() {
   }
 
   return (
-    <div className="p-8">
-      <div className="flex justify-between items-center mb-8">
+    <div>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-800">
+          <h1 className="text-2xl lg:text-3xl font-bold text-gray-800">
             Mural de Ideias 💡
           </h1>
-          <p className="text-gray-500 mt-1">
-            Mostrando {ideias.length} ideias cadastradas
+          <p className="text-gray-500 text-sm lg:text-base mt-1">
+            {ideias.length} ideias cadastradas
           </p>
         </div>
         <button 
           onClick={() => navigate('/ideias/nova')}
-          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors shadow-sm"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors shadow-sm w-full sm:w-auto"
         >
           + Nova Ideia
         </button>
       </div>
 
       {/* Barra de Filtros */}
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="bg-white p-3 lg:p-4 rounded-lg shadow-sm border border-gray-200 mb-4 lg:mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {/* Campo de Busca */}
           <div className="lg:col-span-2">
             <div className="relative">
@@ -226,12 +226,12 @@ export function Ideias() {
           </button>
         </div>
       ) : (
-        <div className="flex flex-wrap gap-6 justify-center sm:justify-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 lg:gap-6">
           {ideiasFiltradas.map((ideia) => (
             <Link 
               key={ideia.id}
               to={`/ideias/${ideia.id}`} 
-              className="transition-transform hover:-translate-y-1"
+              className="transition-transform hover:-translate-y-1 block"
             >
               <IdeiaCard 
                 titulo={ideia.titulo}
